@@ -1,16 +1,28 @@
 import random
 
+
 def give_the_number():
     number = random.randint(1, 100)
-    if number <= 50:
-        print(number, "The number is 1~50. You lose. Play again.")
+    if number <= 51:
+        print(number, "The number is 1~51. You lose. Play again.")
         return False
     else:
-        print(number, "The number is 51~100. You win. Good Luck.")
+        print(number, "The number is 52~100. You win. Good Luck.")
         return True
 
-x = 0
-while x < 100:
-    result = give_the_number()
-    print(result)
-    x += 1
+
+def a_fool(funds, wager, game_count):
+    current_game_count = 0
+    while current_game_count < game_count:
+        if give_the_number():
+            funds += wager
+        else:
+            funds -= wager
+        current_game_count += 1
+    if funds <= 0:
+        funds = "Penny less"
+    
+    print("How rich the fool is:", funds)
+
+
+a_fool(1000000, 100000, 100)
